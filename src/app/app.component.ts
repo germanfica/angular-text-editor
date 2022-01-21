@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AngularEditorConfig } from '@kolkov/angular-editor';
 
 @Component({
@@ -8,9 +9,8 @@ import { AngularEditorConfig } from '@kolkov/angular-editor';
 })
 export class AppComponent {
   title = 'angular-text-editor';
-
-  htmlContent: string = "HOLAAA";
-
+  htmlContent: string = "demo text";
+  textEditorForm: FormGroup; // text editor form
   editorConfig: AngularEditorConfig = {
     editable: true,
     spellcheck: true,
@@ -47,9 +47,9 @@ export class AppComponent {
         tag: 'h1',
       },
     ],
-    uploadUrl: 'v1/image',
-    //upload: (file: File) => { },
-    uploadWithCredentials: false,
+    // uploadUrl: 'v1/image',
+    // upload: (file: File) => { },
+    // uploadWithCredentials: false,
     sanitize: true,
     toolbarPosition: 'top',
     toolbarHiddenButtons: [
@@ -58,5 +58,19 @@ export class AppComponent {
     ]
   };
 
+  constructor(private fb: FormBuilder) {
+    this.textEditorForm = this.fb.group({
+      // properties to validate
+      // formControlName="htmlContent"
+      htmlContent: [''],
+    });
+  }
+
+  /**
+   * Gets the course content
+   */
+  public getContent(): void {
+    console.log(this.textEditorForm.value.htmlContent);
+  }
 
 }

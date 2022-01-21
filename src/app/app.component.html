@@ -4,8 +4,11 @@
 
 <!-- reactive forms -->
 <!-- <angular-editor formControlName="htmlContent" [config]="editorConfig"></angular-editor> -->
-<angular-editor formControlName="htmlContent" [config]="editorConfig"></angular-editor>
 
+<form [formGroup]="textEditorForm">
+  <angular-editor formControlName="htmlContent" [config]="editorConfig"></angular-editor>
+</form>
+<button (click)="getContent()">Get content!</button>
 
 <!-- multiple editors -->
 <!-- <angular-editor id="editor1" formControlName="htmlContent1" [config]="editorConfig"></angular-editor> -->
